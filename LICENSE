@@ -1,12 +1,16 @@
-The following directories, their subdirectories, and any files inside said directories or subdirectories are subject to
-the license below.
+The resources in this repository (including directories below) have been
+entirely recreated by hikoma0000. Therefore, the original "All Rights Reserved"
+restrictions have been removed, and these resources are now released under
+the MIT License.
 
 /common/src/main/resources/
 /fabric/src/main/resources/
 /forge/src/main/resources/
 
-All Rights Reserved
+------------------------------------------------------------------------------
+
 Copyright (c) 2025 LunazStudios.
+Copyright (c) 2026 hikoma0000 (Modifications and New Resources)
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
 WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
