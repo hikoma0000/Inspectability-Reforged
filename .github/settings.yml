@@ -1,0 +1,156 @@
+# These settings are synced to GitHub by https://probot.github.io/apps/settings/
+
+labels:
+  - name: "type/bug"
+    color: "#d73a4a"
+    description: "Something isn't working as expected."
+
+  - name: "type/crash"
+    color: "#d93f0b"
+    description: "The game or application is closing unexpectedly."
+
+  - name: "type/compatibility"
+    color: "d4c5f9"
+    description: "Related to compatibility with other systems, versions, or environments."
+
+  - name: "type/suggestion"
+    color: "#f6ea4d"
+    description: "An idea or request for a new feature."
+
+  - name: "type/improvement"
+    color: "#037571"
+    description: "An improvement to an existing feature."
+
+  - name: "type/question"
+    color: "#d876e3"
+    description: "A question or request for more information."
+
+  - name: "type/documentation"
+    color: "#0075ca"
+    description: "Related to creating or updating documentation."
+
+
+  # --- Priority ---
+  - name: "priority/high"
+    color: "#b22222"
+    description: "A critical issue that needs immediate attention."
+
+  - name: "priority/medium"
+    color: "#ff8c00"
+    description: "A normal priority issue."
+
+  - name: "priority/low"
+    color: "#87cefa"
+    description: "A low priority issue that can be addressed when time permits."
+
+
+  # --- Status ---
+  - name: "status/confirmed"
+    color: "#228b22"
+    description: "The reported issue has been confirmed."
+
+  - name: "status/not-yet-confirmed"
+    color: "#0052cc"
+    description: "The reported issue has not yet been confirmed."
+
+  - name: "status/in-progress"
+    color: "#f8c300"
+    description: "Work is currently in progress."
+
+  - name: "status/needs-info"
+    color: "#fbca04"
+    description: "More information is needed from the reporter."
+
+  - name: "status/duplicate"
+    color: "#cfd3d7"
+    description: "This is a duplicate of another issue or pull request."
+
+  - name: "status/wontfix"
+    color: "#ffffff"
+    description: "This will not be fixed."
+
+  - name: "status/invalid"
+    color: "e6e6e6"
+    description: "This doesn't seem right"
+
+
+  # --- Cause ---
+  - name: "cause/identified"
+    color: "508A16"
+    description: "The root cause of the issue has been identified."
+  - name: "cause/inferred"
+    color: "c0c004"
+    description: "The root cause is suspected but not yet confirmed."
+  - name: "cause/unknown"
+    color: "700205"
+    description: "The root cause of the issue has not yet been determined."
+
+
+  # --- For Contributors ---
+  - name: "good first issue"
+    color: "#7057ff"
+    description: "Good for first-time contributors."
+  - name: "help wanted"
+    color: "#008672"
+    description: "Help from the community is wanted."
+
+
+  # --- Area ---
+  - name: "area/ui"
+    color: "#c2e0c6"
+    description: "Related to the user interface or user experience."
+  - name: "area/rendering"
+    color: "#c2e0c6"
+    description: "Related to rendering."
+  - name: "area/api"
+    color: "#c2e0c6"
+    description: "Related to the API."
+  - name: "area/performance"
+    color: "#c2e0c6"
+    description: "Related to performance."
+
+
+  # --- loader ---
+  - name: "all loader"
+    color: "#bfbec5"
+    description: ""
+
+  - name: "forge"
+    color: "#212b44"
+    description: ""
+  - name: "neoforge"
+    color: "#d7742f"
+    description: ""
+  - name: "fabric"
+    color: "#dbd0b4"
+    description: ""
+
+
+  # --- version ---
+  - name: "all version"
+    color: "#bfbec5"
+    description: ""
+
+  - name: "1.20.1"
+    color: "#808080"
+    description: ""
+  - name: "1.21.1"
+    color: "#808080"
+    description: ""
+  - name: "1.16.5"
+    color: "#808080"
+    description: ""
+
+
+  # --- other ---
+  - name: "fixed in next release"
+    color: "fbca04"
+    description: ""
+
+  - name: "TODO"
+    color: "591ef7"
+    description: ""
+
+  - name: "other mod"
+    color: "051737"
+    description: ""

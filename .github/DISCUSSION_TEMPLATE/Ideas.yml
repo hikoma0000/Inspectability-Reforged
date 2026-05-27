@@ -1,0 +1,54 @@
+title: "[Idea]: "
+labels: [status/not-yet-confirmed]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for sharing your idea! Please fill out the following details to help us understand it better.
+
+  - type: dropdown
+    id: idea-type
+    attributes:
+      label: What type of idea is this?
+      description: Please select the category that best describes your idea.
+      options:
+        - suggestion
+        - improvement
+        - documentation
+    validations:
+      required: true
+
+  - type: dropdown
+    id: loader
+    attributes:
+      label: Which loader does this idea apply to?
+      description: Please select the mod loader. If it applies to all, select "all loader".
+      options:
+        - all loader
+        - forge
+        - neoforge
+        - fabric
+    validations:
+      required: true
+
+  - type: dropdown
+    id: version
+    attributes:
+      label: Which version does this idea apply to?
+      description: Please select the game version. If it applies to all, select "all version".
+      options:
+        - all version
+        - "1.21.1"
+        - "1.20.1"
+        - "1.16.5"
+    validations:
+      required: true
+
+  - type: textarea
+    id: idea-body
+    attributes:
+      label: Describe your idea
+      description: "Please provide a clear and detailed description of your idea. Explain the problem and your proposed solution."
+      placeholder: "Describe your idea here..."
+    validations:
+      required: true

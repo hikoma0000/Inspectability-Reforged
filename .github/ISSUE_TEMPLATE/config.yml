@@ -1,0 +1,13 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ideas
+    url: https://github.com/hikoma0000/Advancement-Trophies-Reforged/discussions/new?category=ideas
+    about: Please share your ideas for new features or improvements.
+
+  - name: Question
+    url: https://github.com/hikoma0000/Advancement-Trophies-Reforged/discussions/new?category=question
+    about: If you have questions about how to use the mod or other inquiries, please ask here.
+
+  - name: Personal consultation
+    url: https://x.com/hikoma0000
+    about: For any other personal consultation, please contact here.

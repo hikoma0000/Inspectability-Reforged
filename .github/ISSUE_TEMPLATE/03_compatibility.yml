@@ -1,0 +1,55 @@
+name: "Compatibility Report"
+description: "Report an issue related to compatibility with other mods."
+title: "[Compat]: "
+labels: ["type/compatibility", "status/not-yet-confirmed"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please make sure to test with the latest versions of all mods involved.
+
+  - type: input
+    id: versions
+    attributes:
+      label: Minecraft, Modloader, and ATR Version
+      description: "Please provide the versions of Minecraft, your modloader (Forge/Fabric), and this mod."
+    validations:
+      required: true
+
+  - type: textarea
+    id: conflicting-mods
+    attributes:
+      label: Conflicting Mod(s)
+      description: "Please list the mod(s) that are causing a compatibility issue, including their versions."
+      placeholder: "- Mod Name: [e.g., Carry On] v2.1.0.1"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: "A clear and concise description of the compatibility issue."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: "Steps to reproduce the behavior."
+      placeholder: |
+        1. Install Mod A and Mod B...
+        2. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs & Crash Reports
+      description: |
+        Please provide a link to your log file.
+        Upload your log to https://mclo.gs/ and paste the link here.
+        **DO NOT PASTE THE LOG CONTENT DIRECTLY!**
+      placeholder: "Please paste the link to https://mclo.gs/"

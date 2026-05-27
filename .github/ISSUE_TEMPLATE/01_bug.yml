@@ -1,0 +1,67 @@
+name: "Bug Report"
+description: "Template for reporting a bug"
+title: "[Bug]: "
+labels: [ "type/bug", "status/not-yet-confirmed" ]
+
+body:
+  - type: checkboxes
+    id: preliminary
+    attributes:
+      label: I have confirmed that ...
+      options:
+        - label: The bug does not occur without ATR.
+          required: true
+        - label: ATR is up to date.
+          required: true
+
+  - type: textarea
+    id: related
+    attributes:
+      label: Related Mods
+      description: >-
+        Try to remove unrelated plugins and mods before reporting.
+      placeholder: 'Mods list here'
+      render: 'raw'
+
+  - type: input
+    id: versions
+    attributes:
+      label: Minecraft, Modloader and ATR version
+      description: |
+        The version of Minecraft you are using, the mod loader (forge/fabric) and its version, and the version of this Mod.
+        These can be found in the corner of the main menu, in the log on startup, or in the name of the downloaded file.
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: >-
+        Please include as much information as possible. 
+        <br>For the description, assume we have no idea how mods work, 
+        be as detailed as possible and include a step by step reproduction. 
+        <br>It is recommended you try to reproduce the issue you are having yourself with as few mods as possible. 
+        <br>The clearer the description, the higher the report processing priority.
+      placeholder: "Detailed information about what should(not) happen"
+    validations:
+      required: true
+
+  - type: textarea
+    id: step
+    attributes:
+      label: Steps to Reproduce
+      placeholder: |
+        1. Install something...
+        2. Join the game...
+        3. ....
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs & Crash reports
+      description: |
+        Logs are in `latest.log` in the `logs` folder of your minecraft folder, and crash reports are in the `crash-reports` folder of your minecraft folder.
+        Paste the log on https://mclo.gs/, save it, and share it here.
+        **NEVER PASTE IT HERE AS IS.**
+      placeholder: 'Please paste the link to https://mclo.gs/'

@@ -1,0 +1,36 @@
+name: Build Manual
+on:
+  workflow_dispatch:
+    inputs:
+      loader:
+        description: 'forge / fabric / neoforge / auto'
+        type: choice
+        options: [auto, forge, fabric, neoforge]
+        default: auto
+      java:
+        description: 'Java'
+        type: choice
+        options: ['8', '17','21']
+        default: '21'
+      project-dir:
+        description: 'Project dir'
+        type: string
+        default: '.'
+      gradle-task:
+        description: 'Gradle task'
+        type: string
+        default: 'build'
+      upload-artifact:
+        description: 'Upload artifact'
+        type: boolean
+        default: true
+
+jobs:
+  call:
+    uses: ./.github/workflows/_gradle_build_core.yml
+    with:
+      loader-override: ${{ inputs.loader != 'auto' && inputs.loader || '' }}
+      java: ${{ inputs.java }}
+      project-dir: ${{ inputs['project-dir'] }}
+      gradle-task: ${{ inputs['gradle-task'] }}
+      upload-artifact: ${{ inputs['upload-artifact'] }}

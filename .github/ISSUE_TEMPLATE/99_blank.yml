@@ -1,0 +1,13 @@
+name: "Other Issue"
+description: "For issues that don't fit any other template."
+title: "[Other Issue]: "
+labels: [ "status/not-yet-confirmed" ]
+
+body:
+  - type: textarea
+    id: issue-description
+    attributes:
+      label: "Issue Description"
+      description: "Please provide a clear and concise description of your issue."
+    validations:
+      required: true

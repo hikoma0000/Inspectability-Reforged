@@ -1,0 +1,44 @@
+# .github/DISCUSSION_TEMPLATE/Question.yml
+
+title: "[Question]: "
+labels: [type/question, status/not-yet-confirmed]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for asking a question! Please fill out the following details to help us provide a better answer.
+
+  - type: dropdown
+    id: loader
+    attributes:
+      label: Which loader are you using?
+      description: Please select the mod loader you are using. If this applies to all, select "all loader".
+      options:
+        - all loader
+        - forge
+        - neoforge
+        - fabric
+    validations:
+      required: true
+
+  - type: dropdown
+    id: version
+    attributes:
+      label: Which version are you using?
+      description: Please select the game version this question is about. If it applies to all, select "all version".
+      options:
+        - all version
+        - "1.21.1"
+        - "1.20.1"
+        - "1.16.5"
+    validations:
+      required: true
+
+  - type: textarea
+    id: question-body
+    attributes:
+      label: What is your question?
+      description: "Please provide a clear and concise description of your question."
+      placeholder: "Ask your question here..."
+    validations:
+      required: true

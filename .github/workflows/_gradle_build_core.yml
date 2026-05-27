@@ -1,0 +1,128 @@
+name: Gradle Build Core
+
+on:
+  workflow_call:
+    inputs:
+      java:
+        type: string
+        default: '21'
+      project-dir:
+        type: string
+        default: '.'
+      gradle-task:
+        type: string
+        default: 'build'
+      loader-override:
+        type: string
+        required: false
+      upload-artifact:
+        type: boolean
+        default: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ inputs.java }}
+          cache: gradle
+
+      - name: Gradle build
+        working-directory: ${{ inputs.project-dir }}
+        run: |
+          chmod +x ./gradlew || true
+          ./gradlew ${{ inputs.gradle-task }} --stacktrace
+
+      - name: Resolve metadata and rename jar
+        id: meta
+        shell: bash
+        env:
+          LOADER_OVERRIDE: ${{ inputs.loader-override }}   # 空なら未設定
+          PROJECT_DIR: ${{ inputs.project-dir }}
+        run: |
+          set -euo pipefail
+          ROOT="${PROJECT_DIR:-.}"
+          SETTINGS="$ROOT/.github/workflows/settings.json"
+
+          jq_val () { test -f "$SETTINGS" && jq -r ".$1 // empty" "$SETTINGS" || true; }
+
+          MOD_NAME="$(jq_val mod_name || true)"
+          LOADER_SET="$(jq_val loader_name || true)"
+          MC_VERSION="$(jq_val minecraft_version || true)"
+          MOD_VERSION="$(jq_val mod_version || true)"
+
+          # override or fallback
+          LOADER="${LOADER_OVERRIDE:-$LOADER_SET}"
+
+          detect_loader () {
+            if [[ -f "$ROOT/fabric.mod.json" ]] || grep -Riq "fabric-loom" "$ROOT/build.gradle" "$ROOT/build.gradle.kts" 2>/dev/null; then echo fabric; return; fi
+            if grep -Riq "net\.neoforged" "$ROOT/build.gradle" "$ROOT/build.gradle.kts" 2>/dev/null; then echo neoforge; return; fi
+            if [[ -f "$ROOT/src/main/resources/META-INF/mods.toml" ]] || grep -Riq "net\.minecraftforge" "$ROOT/build.gradle" "$ROOT/build.gradle.kts" 2>/dev/null; then echo forge; return; fi
+            echo forge
+          }
+          if [[ -z "${LOADER:-}" ]]; then LOADER="$(detect_loader)"; fi
+          LOADER="$(echo "$LOADER" | tr '[:upper:]' '[:lower:]')"
+
+          prop () { grep -E "^$1=" "$ROOT/gradle.properties" 2>/dev/null | sed -E "s/^$1=//" | tr -d '\r' || true; }
+
+          if [[ -z "${MC_VERSION:-}" ]]; then
+            MC_VERSION="$(prop minecraft_version || true)"
+            [[ -z "$MC_VERSION" ]] && MC_VERSION="$(prop minecraft || true)"
+            if [[ -z "$MC_VERSION" && -f "$ROOT/fabric.mod.json" ]]; then
+              MC_VERSION="$(jq -r '.depends.minecraft // .depends["minecraft"] // empty' "$ROOT/fabric.mod.json" | head -n1 || true)"
+            fi
+          fi
+          if [[ -z "${MOD_VERSION:-}" ]]; then
+            MOD_VERSION="$(prop mod_version || true)"
+            [[ -z "$MOD_VERSION" ]] && MOD_VERSION="$(prop version || true)"
+          fi
+          if [[ -z "${MOD_NAME:-}" ]]; then
+            if [[ -f "$ROOT/fabric.mod.json" ]]; then
+              MOD_NAME="$(jq -r '.name // empty' "$ROOT/fabric.mod.json" || true)"
+            fi
+            if [[ -z "$MOD_NAME" && -f "$ROOT/src/main/resources/META-INF/mods.toml" ]]; then
+              MOD_NAME="$(grep -E '^\s*displayName\s*=' "$ROOT/src/main/resources/META-INF/mods.toml" | head -n1 | sed -E 's/.*=\s*"?(.*?)"?/\1/' || true)"
+            fi
+            [[ -z "$MOD_NAME" ]] && MOD_NAME="${GITHUB_REPOSITORY##*/}"
+          fi
+
+          SHA="${GITHUB_SHA:-dev}"
+          SHORT_SHA="${SHA:0:7}"
+          [[ -z "${MC_VERSION:-}" ]] && MC_VERSION="unknown-mc"
+          [[ -z "${MOD_VERSION:-}" ]] && MOD_VERSION="${GITHUB_REF_NAME:-dev}+${SHORT_SHA}"
+
+          safe () { echo "$1" | sed -E 's/[[:space:]]+/-/g; s/[^A-Za-z0-9._-]+/-/g; s/^-+|-+$//g'; }
+          MOD_NAME_SAFE="$(safe "$MOD_NAME")"
+          LOADER_SAFE="$(safe "$LOADER")"
+          MC_VERSION_SAFE="$(safe "$MC_VERSION")"
+          MOD_VERSION_SAFE="$(safe "$MOD_VERSION")"
+
+          mapfile -t CANDIDATES < <(find "$ROOT" -type f -path "*/build/libs/*.jar" \
+            ! -name "*-sources.jar" ! -name "*-javadoc.jar" ! -name "*-dev.jar" 2>/dev/null)
+          if [[ ${#CANDIDATES[@]} -eq 0 ]]; then
+            echo "No jars found under $ROOT/**/build/libs" >&2
+            exit 1
+          fi
+          JAR="$(printf '%s\n' "${CANDIDATES[@]}" | xargs -I{} bash -lc 'printf "%012d %s\n" "$(stat -c%s "{}")" "{}"' | sort -nr | head -n1 | cut -d' ' -f2-)"
+
+          mkdir -p "$ROOT/artifacts"
+          FINAL="${MOD_NAME_SAFE}-${LOADER_SAFE}-${MC_VERSION_SAFE}-${MOD_VERSION_SAFE}.jar"
+          cp "$JAR" "$ROOT/artifacts/$FINAL"
+
+          echo "final_name=$FINAL" >> "$GITHUB_OUTPUT"
+          echo "final_path=$ROOT/artifacts/$FINAL" >> "$GITHUB_OUTPUT"
+
+      - name: Upload artifact
+        if: ${{ inputs.upload-artifact }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.meta.outputs.final_name }}
+          path: ${{ steps.meta.outputs.final_path }}
+          if-no-files-found: error

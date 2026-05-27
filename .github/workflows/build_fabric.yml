@@ -1,0 +1,10 @@
+name: Build (Fabric)
+on: { workflow_dispatch : {} }
+jobs:
+  call:
+    uses: ./.github/workflows/_gradle_build_core.yml
+    with:
+      loader-override: fabric
+      java: '21'
+      project-dir: '.'
+      gradle-task: 'build'

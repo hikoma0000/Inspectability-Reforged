@@ -1,0 +1,10 @@
+name: Build (Forge)
+on: { workflow_dispatch : {} }
+jobs:
+  call:
+    uses: ./.github/workflows/_gradle_build_core.yml
+    with:
+      loader-override: forge
+      java: '17'
+      project-dir: '.'
+      gradle-task: 'build'
