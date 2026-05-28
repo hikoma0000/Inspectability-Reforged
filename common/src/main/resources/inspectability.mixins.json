@@ -1,10 +1,14 @@
 {
   "required": true,
-  "package": "com.lunazstudios.inspectability.mixin",
-  "compatibilityLevel": "JAVA_21",
+  "package": "io.github.hikoma0000.inspectability.mixin",
+  "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "client": [
-    "client.HeldItemTransformMixin"
+    "client.GameRendererMixin",
+    "client.HeldItemTransformMixin",
+    "client.AbstractContainerScreenMixin",
+    "client.BoatItemAccessor",
+    "client.MinecartItemAccessor"
   ],
   "mixins": [
   ],

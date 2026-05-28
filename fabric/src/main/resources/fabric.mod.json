@@ -2,23 +2,23 @@
   "schemaVersion": 1,
   "id": "inspectability",
   "version": "${version}",
-  "name": "Inspectability",
+  "name": "Inspectability Reforged",
   "description": "A mod that allows players to inspect item models in-game, providing a closer and detailed view of the item's appearance.",
   "authors": [
-    "LunazStudios"
+    "LunazStudios", "hikoma0000"
   ],
   "contact": {
-    "homepage": ""
+    "sources": "https://github.com/hikoma0000/Inspectability-Reforged"
   },
   "license": "MIT",
   "icon": "assets/inspectability/icon.png",
   "environment": "client",
   "entrypoints": {
     "main": [
-      "com.lunazstudios.inspectability.fabric.InspectabilityFabric"
+      "io.github.hikoma0000.inspectability.fabric.InspectabilityFabric"
     ],
     "client": [
-      "com.lunazstudios.inspectability.fabric.client.InspectabilityFabricClient"
+      "io.github.hikoma0000.inspectability.fabric.client.InspectabilityFabricClient"
     ]
   },
   "mixins": [

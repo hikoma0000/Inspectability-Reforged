@@ -1,9 +1,16 @@
 {
-  "category.inspectability": "Inspectability",
+  "tooltip.inspectability.move": "Move: Right-Click + Drag",
+  "tooltip.inspectability.reposition": "Reset Position: Mouse Wheel Click",
+  "tooltip.inspectability.rotate": "Rotate: Left-Click + Drag",
+  "tooltip.inspectability.zoom": "Zoom: Scroll Wheel",
+  "tooltip.inspectability.roll": "Roll: Ctrl + Left-Click + Drag",
+  "tooltip.inspectability.view_state": "View %1$s: %2$s",
+  "inspectability.state.item": "Item",
+  "inspectability.state.block": "Block",
+  "inspectability.state.entity": "Entity",
+  "inspectability.state.equipment": "Equipment",
+  "inspectability.state.map": "Map",
   "key.inspectability.openiteminspector": "Open Item Inspector",
-
-  "tooltip.inspectability.move": "Click and drag to move.",
-  "tooltip.inspectability.reposition": "Right-click to reposition.",
-  "tooltip.inspectability.rotate": "Left-click to rotate.",
-  "tooltip.inspectability.zoom": "Scroll the mouse wheel to zoom."
+  "key.categories.inspectability": "Inspectability Reforged",
+  "tooltip.inspectability.change_variant": "Change Variant: %1$s/%2$s"
 }

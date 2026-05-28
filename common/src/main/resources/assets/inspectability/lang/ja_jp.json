@@ -1,0 +1,16 @@
+{
+  "tooltip.inspectability.move": "移動: 右クリック + ドラッグ",
+  "tooltip.inspectability.reposition": "リセット: マウスホイールクリック",
+  "tooltip.inspectability.rotate": "回転: 左クリック + ドラッグ",
+  "tooltip.inspectability.zoom": "ズーム: スクロールホイール",
+  "tooltip.inspectability.roll": "ロール: Ctrl + 左クリック + ドラッグ",
+  "tooltip.inspectability.view_state": "%1$sを見る: %2$s",
+  "inspectability.state.item": "アイテム",
+  "inspectability.state.block": "ブロック",
+  "inspectability.state.entity": "エンティティ",
+  "inspectability.state.equipment": "装備",
+  "inspectability.state.map": "地図",
+  "key.inspectability.openiteminspector": "アイテムインスペクターを開く",
+  "key.categories.inspectability": "Inspectability Reforged",
+  "tooltip.inspectability.change_variant": "バリアント変更: %1$s/%2$s"
+}
