@@ -97,6 +97,7 @@ The full documentation is coming soon..
 
 </details>
 
+---
 
 ## License
 
